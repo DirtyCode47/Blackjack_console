@@ -16,5 +16,10 @@ namespace Blackjack_console
             hand = new CardStack();
             currentPoints = 5000;
         }
+        public Player(CardStack hand, int currentPoints)
+        {
+            this.hand = hand;
+            this.currentPoints = currentPoints;
+        }
     }
 }
