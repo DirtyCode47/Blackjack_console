@@ -38,7 +38,7 @@ namespace Blackjack_console
                 Card card = cardStack.Pop();
 
 
-                cardStack.AddByIndex(rnd.Next(0, 51), card);
+                cardStack.AddByIndex(rnd.Next(0, cardStack.count), card);
             }
 
 

@@ -112,5 +112,70 @@ namespace Blackjack_console
 
             return removedCard;
         }
+
+
+        public (bool isAcesExist, int amountOfAces) IsAcesExist()
+        {
+            var tempCardNode = this.headCardNode;
+            int amountOfAces = 0;
+            bool isAcesExist = false;
+
+            while (tempCardNode != null)
+            {
+                if(tempCardNode.card.value == "Туз")
+                {
+                    amountOfAces++;
+                }
+                tempCardNode = tempCardNode.nextCardNode;
+            }
+
+            if(amountOfAces>0)
+            {
+                isAcesExist = true;
+            }
+
+            return (isAcesExist,amountOfAces);
+        }
+
+        public void SetAllAcesPointsToOne()
+        {
+            var tempCardNode = this.headCardNode;
+
+            while (tempCardNode != null)
+            {
+                if (tempCardNode.card.value == "Туз")
+                {
+                    tempCardNode.card.points=1;
+                }
+                tempCardNode = tempCardNode.nextCardNode;
+            }
+        }
+
+        public void SetAllAcesPointsToEleven()
+        {
+            var tempCardNode = this.headCardNode;
+
+            while (tempCardNode != null)
+            {
+                if (tempCardNode.card.value == "Туз")
+                {
+                    tempCardNode.card.points = 11;
+                }
+                tempCardNode = tempCardNode.nextCardNode;
+            }
+        }
+        //public int GetAmountOfCards()
+        //{
+        //    var tempCardNode = this.headCardNode;
+        //    int amountOfCards = 0;
+
+        //    while (tempCardNode != null)
+        //    {
+        //        amountOfCards++;
+        //        tempCardNode = tempCardNode.nextCardNode;
+        //    }
+
+        //    return amountOfCards;
+        //}
     }
 }
