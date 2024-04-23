@@ -15,7 +15,7 @@ namespace Blackjack_console
         public bool isGameOver;
         public bool isFirstHandAvailable;
         public bool isSecondHandAvailable;
-        public bool isPersonWinner;
+        public IsPersonWinner isPersonWinner;
         public Game()
         {
             gameModes = new GameModes();
@@ -23,7 +23,7 @@ namespace Blackjack_console
             computer = new Computer(new CardStack(),0,1000000);
             deck = DeckManager.CreateDeck();
             isGameOver = false;
-            isPersonWinner = false;
+            isPersonWinner = IsPersonWinner.None;
             isFirstHandAvailable = true;
             isSecondHandAvailable = false;
         }
@@ -32,7 +32,7 @@ namespace Blackjack_console
             do
             {
                 DeckManager.ShuffleDeck(deck);
-                GameManager.UpdateGame(this);
+                GameManager.StartRound(this);
 
             } while (!isGameOver);
         }
