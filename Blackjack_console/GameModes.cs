@@ -328,7 +328,7 @@ namespace Blackjack_console
             return;
         }
 
-        public static void PlaySplitMode(Game game, int bet)
+        public static void PlaySplitMode(Game game, int bet) //добавить проверку в pick и других модах на 21 очко, так как в сплит моде 21 очко может выпать впоследствии для рук
         {
             SplitMode = true;
             game.person.secondHand.Push(game.person.hand.Pop());
@@ -396,7 +396,6 @@ namespace Blackjack_console
                         Renderer.PrintAdditionalInfoInFile("Была взята карта");
                         GameModes.pickMode = true;
                         isCorrectButtonClicked = true;
-                        SplitMode = false;
                         GameModes.PlayPickMode(game, bet);
                         break;
 
@@ -404,7 +403,6 @@ namespace Blackjack_console
                         Renderer.PrintAdditionalInfoInFile("Игрок сделал пасс");
                         GameModes.justPlayMode = true;
                         isCorrectButtonClicked = true;
-                        SplitMode = false;
                         GameModes.PlayPassMode(game, bet);
                         break;
 
@@ -413,11 +411,12 @@ namespace Blackjack_console
                         Renderer.PrintAdditionalInfoInFile("Была выбрана сдача");
                         GameModes.SurrenderMode = true;
                         isCorrectButtonClicked = true;
-                        SplitMode = false;
                         GameModes.PlaySurrenderMode(game, bet);
                         break;
                 }
             } while (!isCorrectButtonClicked);
+
+            SplitMode = false;
         }
 
         private static void EndTheRound(Game game, IsPersonWinner isPersonWinner)
@@ -486,6 +485,9 @@ namespace Blackjack_console
             else
             {
                 Renderer.PrintBeginOrMiddleRound(game);
+                Thread.Sleep(5000);
+                //Console.WriteLine("Введите любую клавишу, чтобы продолжить");
+                //Console.ReadKey();
             }
             
         }
